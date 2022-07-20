@@ -20,7 +20,7 @@ ftp.encoding = "utf-8"
 ftp.cwd('./domains/pz14205.parspack.net/public_html/')
 ftp.retrlines('LIST')
 
-async def checkftp(text):
+def checkftp(text):
     ftp.cwd('./domains/pz14205.parspack.net/public_html/')
     files = []
     try:
@@ -208,7 +208,8 @@ async def doc2(bot,update):
         print(fileeeeeeeeeeeeeeename)
         print(path)
         
-        checkftp(new_filename)
+        res = checkftp(new_filename)
+        print(res)
         with open(path, "rb") as file:
             ftp.storbinary(f"STOR ./{new_filenames}/{fileeeeeeeeeeeeeeename}", file)
         ftp.quit()

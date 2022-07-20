@@ -17,6 +17,13 @@ FTP_PASS = "12345678"
 
 #ftp.cwd('./domains/pz14205.parspack.net/public_html/')
 #ftp.retrlines('LIST')
+def upftp(path,one,two):
+    ftp = ftplib.FTP(FTP_HOST, FTP_USER, FTP_PASS)
+    # force UTF-8 encoding
+    ftp.encoding = "utf-8"
+    with open(path, "rb") as file:
+        ftp.storbinary(f"STOR ./{one}/{two}", file)
+    ftp.quit()
 
 def checkftp(text):
     ftp = ftplib.FTP(FTP_HOST, FTP_USER, FTP_PASS)
@@ -211,9 +218,11 @@ async def doc2(bot,update):
         
         res = checkftp(new_filename)
         print(res)
-        with open(path, "rb") as file:
-            ftp.storbinary(f"STOR ./{new_filenames}/{fileeeeeeeeeeeeeeename}", file)
-        ftp.quit()
+        try :
+            upftp(path,new_filename,fileeeeeeeeeeeeeeename)
+        except:
+            print('errooooooooooooooooooooooooooooooooooooooooor')
+
         print(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filename}/{fileeeeeeeeeeeeeeename}")
         #await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filename}/{new_filename}")
     except Exception as e: 

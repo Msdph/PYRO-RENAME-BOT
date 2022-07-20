@@ -56,7 +56,7 @@ async def rename(bot,update):
 	reply_markup=ForceReply(True))
 
 @Client.on_callback_query(filters.regex('sftp'))
-async def rename(bot,update):
+async def ftp(bot,update):
 	user_id = update.message.chat.id
 	date = update.message.date
 	await update.message.delete()
@@ -69,12 +69,14 @@ async def doc(bot,update):
      type = update.data.split('_')[1]
      new_name = update.message.text
      new_filename = new_name.split(":-")[1]
+     print(new_filename)
      if not "." in new_filename:
          new_filename = new_filename + ".mkv"
      else:
          new_filename = new_filename + ".mkv"
      file_path = f"downloads/{new_filename}"
      file = update.message.reply_to_message
+     print(file_path)
      ms = await update.message.edit("𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳...")
      c_time = time.time()
      try:

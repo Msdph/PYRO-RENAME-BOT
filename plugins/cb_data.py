@@ -30,14 +30,12 @@ def checkftp(text):
             print ("No files in this directory")
         else:
             raise
-    if text in files:  
+    if text in files:
         return "exist"
     else:
         ftp.mkd(text)
-        return "make"  
-	
+        return "make"
 
-	
 @Client.on_callback_query(filters.regex('cancel'))
 async def cancel(bot,update):
     try:
@@ -62,7 +60,7 @@ async def ftp(bot,update):
 	await update.message.reply_text("__𝙿𝚕𝚎𝚊𝚜𝚎 𝙴𝚗𝚝𝚎𝚛 PATH 𝙽𝚊𝚖𝚎...__",	
 	reply_to_message_id=update.message.reply_to_message.id,  
 	reply_markup=ForceReply(True))	
-#sftp
+
 @Client.on_callback_query(filters.regex("upload"))
 async def doc(bot,update):
     type = update.data.split('_')[1]
@@ -116,38 +114,32 @@ async def doc(bot,update):
     await ms.edit("𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....")
     c_time = time.time() 
     try:
-	#print(f"{file_path}\n\n{new_filename}")
-	#checkftp('mas')
-	#with open(file_path, "rb") as file:
-            #ftp.storbinary(f"STOR ./mas/{new_filename}", file)
-        #await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/mas/{new_filename}")
         if type == "document":
             await bot.send_document(
 		    update.message.chat.id,
-                    document=file_path,
-                    thumb=ph_path, 
-                    caption=caption, 
-                    progress=progress_for_pyrogram,
-                    progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....",  ms, c_time   ))
+                document=file_path,
+                thumb=ph_path, 
+                caption=caption, 
+                progress=progress_for_pyrogram,
+                progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....",  ms, c_time   ))
         elif type == "video": 
             await bot.send_video(
-		    update.message.chat.id,
-		    video=file_path,
-		    caption=caption,
-		    thumb=ph_path,
-		    duration=duration,
-		    progress=progress_for_pyrogram,
-		    progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶...."+file_path,  ms, c_time))
+                update.message.chat.id,
+                video=file_path,
+                caption=caption,
+                thumb=ph_path,
+                duration=duration,
+                progress=progress_for_pyrogram,
+                progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶...."+file_path,  ms, c_time))
         elif type == "audio": 
             await bot.send_audio(
-		    update.message.chat.id,
-		    audio=file_path,
-		    caption=caption,
-		    thumb=ph_path,
-		    duration=duration,
-		    progress=progress_for_pyrogram,
-		    progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....",  ms, c_time   ))
-	
+                update.message.chat.id,
+                audio=file_path,
+                caption=caption,
+                thumb=ph_path,
+                duration=duration,
+                progress=progress_for_pyrogram,
+                progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....",  ms, c_time   ))
     except Exception as e: 
         await ms.edit(e) 
         os.remove(file_path)
@@ -158,13 +150,8 @@ async def doc(bot,update):
     if ph_path:
         os.remove(ph_path) 
 
-	
-	
-	
-	
-	
 @Client.on_callback_query(filters.regex("ftp"))
-async def doc(bot,update):
+async def doc2(bot,update):
     type = update.data.split('_')[1]
     new_name = update.message.text
     new_filename = new_name.split(":-")[1]
@@ -219,12 +206,27 @@ async def doc(bot,update):
         print(new_filename)
         print(fileeeeeeeeeeeeeeename)
         print(path)
-        reff = checkftp(new_filename)
-        print(reff)
-        with open(path, "rb") as file:
-            ftp.storbinary(f"STOR ./mas/{fileeeeeeeeeeeeeeename}", file)
-        ftp.quit()
-        await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filename}/{new_filename}")
+        
+        ftp.cwd('./domains/pz14205.parspack.net/public_html/')
+        files = []
+        try:
+            files = ftp.nlst()
+        except ftplib.error_perm as resp:
+            if str(resp) == "550 No files found":
+                print ("No files in this directory")
+            else:
+                raise
+        if new_filename in files:
+            with open(path, "rb") as file:
+                ftp.storbinary(f"STOR ./{new_filename}/{fileeeeeeeeeeeeeeename}", file)
+            ftp.quit()
+        else:
+            ftp.mkd(new_filename)
+            with open(path, "rb") as file:
+                ftp.storbinary(f"STOR ./{new_filename}/{fileeeeeeeeeeeeeeename}", file)
+            ftp.quit()
+        print(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filename}/{new_filename}")
+        #await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filename}/{new_filename}")
     except Exception as e: 
         await ms.edit(e) 
         os.remove(file_path)

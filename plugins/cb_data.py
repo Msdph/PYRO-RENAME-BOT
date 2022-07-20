@@ -221,7 +221,7 @@ async def doc2(bot,update):
         res = checkftp(new_filename)
         print(res)
         try :
-            upftp(path,'test',fileeeeeeeeeeeeeeename)
+            upftp(path,new_filenames,fileeeeeeeeeeeeeeename)
         except:
             await ms.edit(f"cant UPLOAD")
             print('errooooooooooooooooooooooooooooooooooooooooor')

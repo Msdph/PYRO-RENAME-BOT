@@ -20,7 +20,7 @@ ftp.encoding = "utf-8"
 ftp.cwd('./domains/pz14205.parspack.net/public_html/')
 ftp.retrlines('LIST')
 
-def checkftp(text):
+async def checkftp(text):
     ftp.cwd('./domains/pz14205.parspack.net/public_html/')
     files = []
     try:
@@ -208,25 +208,11 @@ async def doc2(bot,update):
         print(fileeeeeeeeeeeeeeename)
         print(path)
         
-        
-        files = []
-        try:
-            files = ftp.nlst()
-        except ftplib.error_perm as resp:
-            if str(resp) == "550 No files found":
-                print ("No files in this directory")
-            else:
-                raise
-        if new_filenames in files:
-            with open(path, "rb") as file:
-                ftp.storbinary(f"STOR ./{new_filenames}/{fileeeeeeeeeeeeeeename}", file)
-            ftp.quit()
-        else:
-            ftp.mkd(new_filenames)
-            with open(path, "rb") as file:
-                ftp.storbinary(f"STOR ./{new_filenames}/{fileeeeeeeeeeeeeeename}", file)
-            ftp.quit()
-        print(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filename}/{new_filename}")
+        checkftp(new_filename)
+        with open(path, "rb") as file:
+            ftp.storbinary(f"STOR ./{new_filenames}/{fileeeeeeeeeeeeeeename}", file)
+        ftp.quit()
+        print(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filename}/{fileeeeeeeeeeeeeeename}")
         #await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filename}/{new_filename}")
     except Exception as e: 
         await ms.edit(e) 

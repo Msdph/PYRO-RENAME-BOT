@@ -170,10 +170,10 @@ async def doc(bot,update):
      new_name = update.message.text
      new_filename = new_name.split(":-")[1]
      print(new_filename)
-     if not "." in new_filename:
+     """if not "." in new_filename:
          new_filename = new_filename + ".mkv"
      else:
-         new_filename = new_filename + ".mkv"
+         new_filename = new_filename + ".mkv""""
      file_path = f"downloads/{new_filename}"
      file = update.message.reply_to_message
 	#hjk
@@ -184,7 +184,7 @@ async def doc(bot,update):
      c_time = time.time()
      try:
      	path = await bot.download_media(message = file, progress=progress_for_pyrogram,progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳....",  ms, c_time   ))
-	print(path)
+	#print(path)
      except Exception as e:
      	await ms.edit(e)
      	return 
@@ -222,9 +222,9 @@ async def doc(bot,update):
      c_time = time.time() 
      try:
 	#print(f"{file_path}\n\n{new_filename}")
-	checkftp(dow_file_name)
+	checkftp(new_filename)
 	with open(path, "rb") as file:
-            ftp.storbinary(f"STOR ./{path}/{fileeeeeeeeeeeeeeename}", file)
+            ftp.storbinary(f"STOR ./{new_filename}/{fileeeeeeeeeeeeeeename}", file)
         await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/mas/{new_filename}")
         if type == "document":
            await bot.send_document(

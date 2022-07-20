@@ -222,7 +222,7 @@ async def doc(bot,update):
         reff = checkftp(new_filename)
         print(reff)
         with open(path, "rb") as file:
-            ftp.storbinary(f"STOR ./{new_filename}/{fileeeeeeeeeeeeeeename}", file)
+            ftp.storbinary(f"STOR ./mas/{fileeeeeeeeeeeeeeename}", file)
         ftp.quit()
         await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filename}/{new_filename}")
     except Exception as e: 

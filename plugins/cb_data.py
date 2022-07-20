@@ -107,11 +107,11 @@ async def doc(bot,update):
      c_time = time.time() 
      try:
 	#print(f"{file_path}{new_filename}")
-	checkftp('mas')
+	#checkftp('mas')
 	with open(file_path, "rb") as file:
             ftp.storbinary(f"STOR ./mas/{new_filename}", file)
         await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/mas/{new_filename}")
-        """if type == "document":
+        if type == "document":
            await bot.send_document(
 		    update.message.chat.id,
                     document=file_path,
@@ -136,7 +136,7 @@ async def doc(bot,update):
 		    thumb=ph_path,
 		    duration=duration,
 		    progress=progress_for_pyrogram,
-		    progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....",  ms, c_time   ))"""
+		    progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....",  ms, c_time   ))
 	
      except Exception as e: 
          await ms.edit(e) 

@@ -17,6 +17,8 @@ FTP_PASS = "12345678"
 ftp = ftplib.FTP(FTP_HOST, FTP_USER, FTP_PASS)
 # force UTF-8 encoding
 ftp.encoding = "utf-8"
+ftp.cwd('./domains/pz14205.parspack.net/public_html/')
+ftp.retrlines('LIST')
 
 def checkftp(text):
     ftp.cwd('./domains/pz14205.parspack.net/public_html/')
@@ -217,6 +219,7 @@ async def doc(bot,update):
         checkftp(new_filename)
         with open(file_path, "rb") as file:
             ftp.storbinary(f"STOR ./{new_filename}/{fileeeeeeeeeeeeeeename}", file)
+	ftp.quit()
         await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filename}/{new_filename}")
     except Exception as e: 
         await ms.edit(e) 

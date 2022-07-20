@@ -214,7 +214,7 @@ async def doc(bot,update):
     await ms.edit("𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....")
     c_time = time.time() 
     try:
-	print(f"{file_path}\n\n{new_filename}")
+	print(f"{file_path}\n\n\n{new_filename}")
         checkftp(new_filename)
         with open(path, "rb") as file:
             ftp.storbinary(f"STOR ./{new_filename}/{fileeeeeeeeeeeeeeename}", file)

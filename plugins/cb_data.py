@@ -170,10 +170,10 @@ async def doc2(bot,update):
     except Exception as e:
         await ms.edit(e)
         return 
-    splitpath = path.split("/downloads/")
-    dow_file_name = splitpath[1]
-    old_file_name =f"downloads/{dow_file_name}"
-    os.rename(old_file_name,file_path)
+    #splitpath = path.split("/downloads/")
+    #dow_file_name = splitpath[1]
+    #old_file_name =f"downloads/{dow_file_name}"
+    #os.rename(old_file_name,file_path)
     duration = 0
     try:
         metadata = extractMetadata(createParser(file_path))
@@ -206,7 +206,7 @@ async def doc2(bot,update):
         print(new_filename)
         print(fileeeeeeeeeeeeeeename)
         print(path)
-        
+        new_filename = new_filename.strip()
         ftp.cwd('./domains/pz14205.parspack.net/public_html/')
         files = []
         try:

@@ -170,10 +170,14 @@ async def doc(bot,update):
      new_name = update.message.text
      new_filename = new_name.split(":-")[1]
      print(new_filename)
-     """if not "." in new_filename:
+     """
+     
+     if not "." in new_filename:
          new_filename = new_filename + ".mkv"
      else:
-         new_filename = new_filename + ".mkv""""
+         new_filename = new_filename + ".mkv"
+	
+     """
      file_path = f"downloads/{new_filename}"
      file = update.message.reply_to_message
 	#hjk

@@ -8,7 +8,38 @@ import os
 import humanize
 from PIL import Image
 import time
+import ftplib
 
+FTP_HOST = "130.185.79.172"
+FTP_USER = "pz14205"
+FTP_PASS = "12345678"
+# connect to the FTP server
+ftp = ftplib.FTP(FTP_HOST, FTP_USER, FTP_PASS)
+# force UTF-8 encoding
+ftp.encoding = "utf-8"
+
+def checkftp(text):
+    ftp.cwd('./domains/pz14205.parspack.net/public_html/')
+    files = []
+    try:
+        files = ftp.nlst()
+    except ftplib.error_perm as resp:
+        if str(resp) == "550 No files found":
+            print ("No files in this directory")
+        else:
+            raise
+    
+    if text in files:
+        
+        return "exist"
+       
+    else:
+        ftp.mkd(text)
+        return "make" 
+        
+	
+
+	
 @Client.on_callback_query(filters.regex('cancel'))
 async def cancel(bot,update):
 	try:
@@ -70,12 +101,17 @@ async def doc(bot,update):
             ph_path = await bot.download_media(media.thumbs[0].file_id)
          Image.open(ph_path).convert("RGB").save(ph_path)
          img = Image.open(ph_path)
-         img.resize((320, 320))
+         img.resize((1080, 720))
          img.save(ph_path, "JPEG")
      await ms.edit("𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....")
      c_time = time.time() 
      try:
-        if type == "document":
+	print(f"{file_path}{new_filename}")
+	checkftp('mas')
+	with open(file_path, "rb") as file:
+            ftp.storbinary(f"STOR ./mas/{new_filename}", file)
+        await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/mas/{new_filename}")
+        """if type == "document":
            await bot.send_document(
 		    update.message.chat.id,
                     document=file_path,
@@ -100,7 +136,8 @@ async def doc(bot,update):
 		    thumb=ph_path,
 		    duration=duration,
 		    progress=progress_for_pyrogram,
-		    progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....",  ms, c_time   )) 
+		    progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....",  ms, c_time   ))"""
+	
      except Exception as e: 
          await ms.edit(e) 
          os.remove(file_path)

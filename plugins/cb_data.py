@@ -219,8 +219,8 @@ async def doc(bot,update):
         checkftp(new_filename)
         with open(file_path, "rb") as file:
             ftp.storbinary(f"STOR ./{new_filename}/{fileeeeeeeeeeeeeeename}", file)
-	ftp.quit()
-        await update.reply_text(f"UPLOAD C OPLETE \n\nhttps://s2.kenzodl.xyz/{new_filename}/{new_filename}")
+        ftp.quit()
+        await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filename}/{new_filename}")
     except Exception as e: 
         await ms.edit(e) 
         os.remove(file_path)

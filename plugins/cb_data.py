@@ -14,13 +14,14 @@ FTP_HOST = "130.185.79.172"
 FTP_USER = "pz14205"
 FTP_PASS = "12345678"
 # connect to the FTP server
-ftp = ftplib.FTP(FTP_HOST, FTP_USER, FTP_PASS)
-# force UTF-8 encoding
-ftp.encoding = "utf-8"
-ftp.cwd('./domains/pz14205.parspack.net/public_html/')
-ftp.retrlines('LIST')
+
+#ftp.cwd('./domains/pz14205.parspack.net/public_html/')
+#ftp.retrlines('LIST')
 
 def checkftp(text):
+    ftp = ftplib.FTP(FTP_HOST, FTP_USER, FTP_PASS)
+    # force UTF-8 encoding
+    ftp.encoding = "utf-8"
     ftp.cwd('./domains/pz14205.parspack.net/public_html/')
     files = []
     try:
@@ -218,9 +219,12 @@ async def doc2(bot,update):
     except Exception as e: 
         await ms.edit(e) 
         os.remove(file_path)
+        os.remove(path)
         if ph_path:
             os.remove(ph_path)
+            
     await ms.delete() 
+    os.remove(path)
     os.remove(file_path) 
     if ph_path:
         os.remove(ph_path) 

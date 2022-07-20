@@ -12,6 +12,7 @@ async def refunc(client, message):
        media = file.media
        await reply_message.delete()
        button = [[InlineKeyboardButton("📁 𝙳𝙾𝙲𝚄𝙼𝙴𝙽𝚃𝚂",callback_data = "upload_document")]]
+       button.append([InlineKeyboardButton("🏷 FTP",callback_data = "upload_ftp")])
        if str(media) in ["MessageMediaType.VIDEO", "MessageMediaType.DOCUMENT"]:
            button.append([InlineKeyboardButton("🎥 𝚅𝙸𝙳𝙴𝙾",callback_data = "upload_video")])
        elif str(media) == "MessageMediaType.AUDIO":

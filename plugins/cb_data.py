@@ -21,6 +21,7 @@ def upftp(path,one,two):
     ftp = ftplib.FTP(FTP_HOST, FTP_USER, FTP_PASS)
     # force UTF-8 encoding
     ftp.encoding = "utf-8"
+    ftp.cwd('./domains/pz14205.parspack.net/public_html/')
     with open(path, "rb") as file:
         ftp.storbinary(f"STOR ./{one}/{two}", file)
     ftp.quit()
@@ -223,9 +224,8 @@ async def doc2(bot,update):
         except:
             print('errooooooooooooooooooooooooooooooooooooooooor')
 
-        await ms.edit(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filenames}/{fileeeeeeeeeeeeeeename}") 
-        #print(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filenames}/{fileeeeeeeeeeeeeeename}")
-        #await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filename}/{new_filename}")
+        await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filenames}/{fileeeeeeeeeeeeeeename}")
+        
     except Exception as e: 
         await ms.edit(e) 
         os.remove(file_path)

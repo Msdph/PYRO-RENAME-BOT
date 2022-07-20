@@ -203,12 +203,12 @@ async def doc2(bot,update):
     await ms.edit("𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....")
     c_time = time.time() 
     try:
-        new_filenames = new_filename.strip()[0]
+        new_filenames = new_filename.split()[0]
         print(new_filenames)
         print(fileeeeeeeeeeeeeeename)
         print(path)
         
-        ftp.cwd('./domains/pz14205.parspack.net/public_html/')
+        
         files = []
         try:
             files = ftp.nlst()

@@ -22,8 +22,9 @@ def upftp(path,one,two):
     # force UTF-8 encoding
     ftp.encoding = "utf-8"
     ftp.cwd('./domains/pz14205.parspack.net/public_html/')
-    with open(path, "rb") as file:
+    with open("."+path, "rb") as file:
         ftp.storbinary(f"STOR ./{one}/{two}", file)
+        
     ftp.quit()
 
 def checkftp(text):

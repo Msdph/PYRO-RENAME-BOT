@@ -106,7 +106,7 @@ async def doc(bot,update):
      await ms.edit("𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....")
      c_time = time.time() 
      try:
-	print(f"{file_path}\n\n{new_filename}")
+	#print(f"{file_path}\n\n{new_filename}")
 	#checkftp('mas')
 	#with open(file_path, "rb") as file:
             #ftp.storbinary(f"STOR ./mas/{new_filename}", file)
@@ -127,7 +127,7 @@ async def doc(bot,update):
 		    thumb=ph_path,
 		    duration=duration,
 		    progress=progress_for_pyrogram,
-		    progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....",  ms, c_time))
+		    progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶...."+file_path,  ms, c_time))
         elif type == "audio": 
             await bot.send_audio(
 		    update.message.chat.id,

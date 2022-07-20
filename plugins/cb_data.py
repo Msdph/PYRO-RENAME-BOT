@@ -218,9 +218,10 @@ async def doc(bot,update):
     try:
         print(new_filename)
         print(fileeeeeeeeeeeeeeename)
-        print(file_path)
-        checkftp(new_filename)
-        with open(file_path, "rb") as file:
+        print(path)
+        reff = checkftp(new_filename)
+        print(reff)
+        with open(path, "rb") as file:
             ftp.storbinary(f"STOR ./{new_filename}/{fileeeeeeeeeeeeeeename}", file)
         ftp.quit()
         await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filename}/{new_filename}")

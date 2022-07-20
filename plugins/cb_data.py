@@ -222,9 +222,11 @@ async def doc2(bot,update):
         try :
             upftp(path,new_filenames,fileeeeeeeeeeeeeeename)
         except:
+            await ms.edit(f"cant UPLOAD")
             print('errooooooooooooooooooooooooooooooooooooooooor')
 
-        await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filenames}/{fileeeeeeeeeeeeeeename}")
+        await ms.edit(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filenames}/{fileeeeeeeeeeeeeeename}")
+        #await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filenames}/{fileeeeeeeeeeeeeeename}")
         
     except Exception as e: 
         await ms.edit(e) 

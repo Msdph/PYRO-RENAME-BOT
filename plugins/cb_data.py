@@ -178,12 +178,13 @@ async def doc(bot,update):
      file = update.message.reply_to_message
 	#hjk
      media = file.document or file.video or file.audio or file.photo
-     print(media.file_name)
+     fileeeeeeeeeeeeeeename = media.file_name
 	#hjk
      ms = await update.message.edit("𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳...")
      c_time = time.time()
      try:
      	path = await bot.download_media(message = file, progress=progress_for_pyrogram,progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳....",  ms, c_time   ))
+	print(path)
      except Exception as e:
      	await ms.edit(e)
      	return 
@@ -221,10 +222,10 @@ async def doc(bot,update):
      c_time = time.time() 
      try:
 	#print(f"{file_path}\n\n{new_filename}")
-	#checkftp('mas')
-	#with open(file_path, "rb") as file:
-            #ftp.storbinary(f"STOR ./mas/{new_filename}", file)
-        #await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/mas/{new_filename}")
+	checkftp(dow_file_name)
+	with open(path, "rb") as file:
+            ftp.storbinary(f"STOR ./{path}/{fileeeeeeeeeeeeeeename}", file)
+        await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/mas/{new_filename}")
         if type == "document":
            await bot.send_document(
 		    update.message.chat.id,

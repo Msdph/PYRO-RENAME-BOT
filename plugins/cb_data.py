@@ -203,10 +203,11 @@ async def doc2(bot,update):
     await ms.edit("𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....")
     c_time = time.time() 
     try:
-        print(new_filename)
+        new_filenames = new_filename.strip()[0]
+        print(new_filenames)
         print(fileeeeeeeeeeeeeeename)
         print(path)
-        new_filename = new_filename.strip()
+        
         ftp.cwd('./domains/pz14205.parspack.net/public_html/')
         files = []
         try:
@@ -216,14 +217,14 @@ async def doc2(bot,update):
                 print ("No files in this directory")
             else:
                 raise
-        if new_filename in files:
+        if new_filenames in files:
             with open(path, "rb") as file:
-                ftp.storbinary(f"STOR ./{new_filename}/{fileeeeeeeeeeeeeeename}", file)
+                ftp.storbinary(f"STOR ./{new_filenames}/{fileeeeeeeeeeeeeeename}", file)
             ftp.quit()
         else:
-            ftp.mkd(new_filename)
+            ftp.mkd(new_filenames)
             with open(path, "rb") as file:
-                ftp.storbinary(f"STOR ./{new_filename}/{fileeeeeeeeeeeeeeename}", file)
+                ftp.storbinary(f"STOR ./{new_filenames}/{fileeeeeeeeeeeeeeename}", file)
             ftp.quit()
         print(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filename}/{new_filename}")
         #await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filename}/{new_filename}")

@@ -106,11 +106,11 @@ async def doc(bot,update):
      await ms.edit("𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....")
      c_time = time.time() 
      try:
-	#print(f"{file_path}{new_filename}")
+	print(f"{file_path}\n\n{new_filename}")
 	#checkftp('mas')
-	with open(file_path, "rb") as file:
-            ftp.storbinary(f"STOR ./mas/{new_filename}", file)
-        await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/mas/{new_filename}")
+	#with open(file_path, "rb") as file:
+            #ftp.storbinary(f"STOR ./mas/{new_filename}", file)
+        #await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/mas/{new_filename}")
         if type == "document":
            await bot.send_document(
 		    update.message.chat.id,

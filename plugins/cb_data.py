@@ -21,10 +21,10 @@ def upftp(path,one,two):
     ftp = ftplib.FTP(FTP_HOST, FTP_USER, FTP_PASS)
     # force UTF-8 encoding
     ftp.encoding = "utf-8"
-    ftp.cwd('./domains/pz14205.parspack.net/public_html/')
-    with open("."+path, "rb") as file:
+    #ftp.cwd('./domains/pz14205.parspack.net/public_html/')
+    with open(path, "rb") as file:
         ftp.storbinary(f"STOR ./{one}/{two}", file)
-        
+
     ftp.quit()
 
 def checkftp(text):
@@ -221,7 +221,7 @@ async def doc2(bot,update):
         res = checkftp(new_filename)
         print(res)
         try :
-            upftp(path,new_filenames,fileeeeeeeeeeeeeeename)
+            upftp(path,'test',fileeeeeeeeeeeeeeename)
         except:
             await ms.edit(f"cant UPLOAD")
             print('errooooooooooooooooooooooooooooooooooooooooor')

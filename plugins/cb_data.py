@@ -253,7 +253,7 @@ async def doc2(bot,update):
         #await bot.send_message(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filenames}/{fileeeeeeeeeeeeeeename}")
 
     except Exception as e: 
-        await ms.edit(e) 
+        #await ms.edit(e) 
         os.remove(file_path)
         os.remove(path)
         if ph_path:

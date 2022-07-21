@@ -242,9 +242,9 @@ async def doc2(bot,update):
             ftp.storbinary(f"STOR {fileeeeeeeeeeeeeeename}", f ,1024 ,handle(0,humanize.naturalsize(media.file_size)))
             f.close()
             #upftp(path,new_filenames,fileeeeeeeeeeeeeeename)
-        except:
-            await ms.edit(f"cant UPLOAD")
-            print('errooooooooooooooooooooooooooooooooooooooooor')
+        except Exception as e:
+            print('eror')
+            print(e)
 
         await ms.edit(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filenames}/{fileeeeeeeeeeeeeeename}")
         #await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filenames}/{fileeeeeeeeeeeeeeename}")

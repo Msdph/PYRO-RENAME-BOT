@@ -233,7 +233,7 @@ async def doc2(bot,update):
         print(path)
         
         #res = 
-        print(res)
+        #print(res)
         try :
             ftp = ftplib.FTP("130.185.79.172")
             ftp.login("pz14205", "12345678")

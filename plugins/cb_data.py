@@ -211,6 +211,7 @@ async def doc2(bot,update):
     media = getattr(file, file.media.value)
     c_caption = data[1] 
     c_thumb = data[0]
+    sixe = humanize.naturalsize(media.file_size)
     if c_caption:
         caption = c_caption.format(filename=new_filename, filesize=humanize.naturalsize(media.file_size), duration=convert(duration))
     else:
@@ -240,7 +241,7 @@ async def doc2(bot,update):
             checkftp(new_filenames)
             f = open(f"{path}", "rb")
             ftp.cwd(f'/domains/pz14205.parspack.net/public_html/{new_filenames}')
-            ftp.storbinary(f"STOR {fileeeeeeeeeeeeeeename}", f ,1024 ,handle(0,70))
+            ftp.storbinary(f"STOR {fileeeeeeeeeeeeeeename}", f ,1024 ,handle(0,int(sixe)))
             f.close()
             #upftp(path,new_filenames,fileeeeeeeeeeeeeeename)
         except Exception as e:
@@ -249,7 +250,8 @@ async def doc2(bot,update):
 
         await ms.edit(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filenames}/{fileeeeeeeeeeeeeeename}")
         #await update.reply_text(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filenames}/{fileeeeeeeeeeeeeeename}")
-        
+        await bot.send_message(f"UPLOAD COPLETE \n\nhttps://s2.kenzodl.xyz/{new_filenames}/{fileeeeeeeeeeeeeeename}")
+
     except Exception as e: 
         await ms.edit(e) 
         os.remove(file_path)
@@ -257,7 +259,7 @@ async def doc2(bot,update):
         if ph_path:
             os.remove(ph_path)
             
-    await ms.delete() 
+    #await ms.delete() 
     os.remove(path)
     os.remove(file_path) 
     if ph_path:

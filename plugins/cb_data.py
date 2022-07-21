@@ -17,15 +17,28 @@ FTP_PASS = "12345678"
 
 #ftp.cwd('./domains/pz14205.parspack.net/public_html/')
 #ftp.retrlines('LIST')
-def upftp(path,one,two):
-    ftp = ftplib.FTP(FTP_HOST, FTP_USER, FTP_PASS)
+def handle(sizeWritten,totalSize):
+    #global sizeWritten
+    sizeWritten += 1024
+    percentComplete = sizeWritten / totalSize
+    print ("%s percent complete" %str(sizeWritten / totalSize))
+
+def upftp(path,folder,filename):
+    ftp = ftplib.FTP("130.185.79.172")
+    ftp.login("pz14205", "12345678")
+    f = open(f"{path}", "rb")
+    ftp.cwd(f'/domains/pz14205.parspack.net/public_html/{folder}')
+    ftp.storbinary(f"STOR {filename}", f ,1024 ,handle)
+    f.close()
+
+    """ftp = ftplib.FTP(FTP_HOST, FTP_USER, FTP_PASS)
     # force UTF-8 encoding
     ftp.encoding = "utf-8"
     #ftp.cwd('./domains/pz14205.parspack.net/public_html/')
     with open(path, "rb") as file:
         ftp.storbinary(f"STOR ./{one}/{two}", file)
 
-    ftp.quit()
+    ftp.quit()"""
 
 def checkftp(text):
     ftp = ftplib.FTP(FTP_HOST, FTP_USER, FTP_PASS)
@@ -172,6 +185,7 @@ async def doc2(bot,update):
 	#hjk
     media = file.document or file.video or file.audio or file.photo
     fileeeeeeeeeeeeeeename = media.file_name
+    #print(media.file_size)
 	#hjk
     ms = await update.message.edit("𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳...")
     c_time = time.time()
@@ -221,7 +235,13 @@ async def doc2(bot,update):
         res = checkftp(new_filename)
         print(res)
         try :
-            upftp(path,new_filenames,fileeeeeeeeeeeeeeename)
+            ftp = ftplib.FTP("130.185.79.172")
+            ftp.login("pz14205", "12345678")
+            f = open(f"{path}", "rb")
+            ftp.cwd(f'/domains/pz14205.parspack.net/public_html/{new_filenames}')
+            ftp.storbinary(f"STOR {fileeeeeeeeeeeeeeename}", f ,1024 ,handle(0,humanize.naturalsize(media.file_size)))
+            f.close()
+            #upftp(path,new_filenames,fileeeeeeeeeeeeeeename)
         except:
             await ms.edit(f"cant UPLOAD")
             print('errooooooooooooooooooooooooooooooooooooooooor')

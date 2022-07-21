@@ -232,11 +232,12 @@ async def doc2(bot,update):
         print(fileeeeeeeeeeeeeeename)
         print(path)
         
-        res = checkftp(new_filename)
+        #res = 
         print(res)
         try :
             ftp = ftplib.FTP("130.185.79.172")
             ftp.login("pz14205", "12345678")
+            checkftp(new_filenames)
             f = open(f"{path}", "rb")
             ftp.cwd(f'/domains/pz14205.parspack.net/public_html/{new_filenames}')
             ftp.storbinary(f"STOR {fileeeeeeeeeeeeeeename}", f ,1024 ,handle(0,humanize.naturalsize(media.file_size)))

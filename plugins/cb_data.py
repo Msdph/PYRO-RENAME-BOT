@@ -240,7 +240,7 @@ async def doc2(bot,update):
             checkftp(new_filenames)
             f = open(f"{path}", "rb")
             ftp.cwd(f'/domains/pz14205.parspack.net/public_html/{new_filenames}')
-            ftp.storbinary(f"STOR {fileeeeeeeeeeeeeeename}", f ,1024 ,handle(0,humanize.naturalsize(media.file_size)))
+            ftp.storbinary(f"STOR {fileeeeeeeeeeeeeeename}", f ,1024 ,handle(0,70))
             f.close()
             #upftp(path,new_filenames,fileeeeeeeeeeeeeeename)
         except Exception as e:

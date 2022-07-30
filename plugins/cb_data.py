@@ -236,7 +236,7 @@ async def doc2(bot,update):
         #res = 
         #print(res)
         try :
-            ftp = ftplib.FTP("130.185.79.172")
+            ftp = ftplib.FTP("194.147.142.52")
             ftp.login("pz14205", "12345678")
             checkftp(new_filenames)
             f = open(f"{path}", "rb")

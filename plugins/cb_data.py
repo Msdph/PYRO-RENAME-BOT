@@ -243,6 +243,7 @@ async def doc2(bot,update):
             ftp.cwd(f'/domains/pz14205.parspack.net/public_html/{new_filenames}')
             ftp.storbinary(f"STOR {fileeeeeeeeeeeeeeename}", f )
             f.close()
+            print("success")
             #upftp(path,new_filenames,fileeeeeeeeeeeeeeename)
         except Exception as e:
             print('eror')

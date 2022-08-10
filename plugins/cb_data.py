@@ -10,7 +10,7 @@ from PIL import Image
 import time
 import ftplib
 
-FTP_HOST = "194.147.142.52"
+FTP_HOST = "130.185.79.155"
 FTP_USER = "pz14205"
 FTP_PASS = "12345678"
 # connect to the FTP server
@@ -24,7 +24,7 @@ def handle(sizeWritten,totalSize):
     print ("%s percent complete" %str(sizeWritten / totalSize))
 
 def upftp(path,folder,filename):
-    ftp = ftplib.FTP("194.147.142.52")
+    ftp = ftplib.FTP("130.185.79.155")
     ftp.login("pz14205", "12345678")
     f = open(f"{path}", "rb")
     ftp.cwd(f'/domains/pz14205.parspack.net/public_html/{folder}')
@@ -236,7 +236,7 @@ async def doc2(bot,update):
         #res = 
         #print(res)
         try :
-            ftp = ftplib.FTP("194.147.142.52")
+            ftp = ftplib.FTP("130.185.79.155")
             ftp.login("pz14205", "12345678")
             checkftp(new_filenames)
             f = open(f"{path}", "rb")
